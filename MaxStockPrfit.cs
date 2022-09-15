@@ -35,7 +35,7 @@ namespace TestStock
                 }
 
             }
-            return maxDiffs;    //return the highest sub sequence list
+            return maxDiffs;    //return the highest diifs list
         }
        
         static void Main(string[] args)

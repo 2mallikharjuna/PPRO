@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Collections.Generic;
 
@@ -7,14 +7,14 @@ namespace TestStock
     class TestStock
     {
         /// <summary>
-        /// Read all sub arrays of continues increase
+        /// Read all sub arrays of continues max differences
         /// </summary>
         /// <param name="elements"></param>
         /// <returns></returns>
-        static List<List<int>> FindIncreasingSequences(IList<int> elements)
+        static List<int> FindMaxDifferences(IList<int> elements)
         {
             List<int> longestSeq = new List<int>();
-            List<List<int>> LongestSubSeqs = new List<List<int>>();
+            List<int> maxDiffs = new List<int>();
 
             for (var i = 0; i < elements.Count; i++)
             {
@@ -29,23 +29,20 @@ namespace TestStock
                 else
                 {
                     //New prepared sequence is having greater count than existing count
-                    if (longestSeq.Count() > 0)                   
-                        LongestSubSeqs.Add(longestSeq.ToList());                   
+                    if (longestSeq.Count() > 0)
+                        maxDiffs.Add(longestSeq[longestSeq.Count() - 1] - longestSeq[0]);                   
                     longestSeq.Clear();
                 }
 
             }
-            return LongestSubSeqs;    //return the highest sub sequence list
+            return maxDiffs;    //return the highest sub sequence list
         }
-        static int CalcDiff(int[] stocks)
-        {  
-            return stocks[stocks.Length - 1] - stocks[0];
-        }
+       
         static void Main(string[] args)
         {
             int[] arrPrices = { 7, 1, 5, 3, 6, 4 };   
             
-            var totalProfit = FindIncreasingSequences(arrPrices.ToList()).Sum(x => CalcDiff(x.ToArray()));   
+            var totalProfit = FindMaxDifferences(arrPrices.ToList()).Sum(x => x);   
             
             Console.WriteLine($"Best profit : {totalProfit}");
         }

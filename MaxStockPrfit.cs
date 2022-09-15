@@ -7,7 +7,7 @@ namespace TestStock
     class TestStock
     {
         /// <summary>
-        /// Read all sub arrays of continues max differences
+        /// Read all sub arrays of continues increase
         /// </summary>
         /// <param name="elements"></param>
         /// <returns></returns>
@@ -28,14 +28,14 @@ namespace TestStock
                 }
                 else
                 {
-                    //New prepared sequence is having greater count than existing count
+                    //New prepared sequence is having greater count than 0
                     if (longestSeq.Count() > 0)
-                        maxDiffs.Add(longestSeq[longestSeq.Count() - 1] - longestSeq[0]);                   
+                        maxDiffs.Add(longestSeq.Last() - longestSeq.First());                   
                     longestSeq.Clear();
                 }
 
             }
-            return maxDiffs;    //return the highest diifs list
+            return maxDiffs;    //return the highest sub sequence list
         }
        
         static void Main(string[] args)
